@@ -1,5 +1,7 @@
 # fast-text-table
 
+![npm bundle size](https://img.shields.io/bundlephobia/min/fast-text-table) ![npm](https://img.shields.io/npm/v/fast-text-table) ![NPM](https://img.shields.io/npm/l/fast-text-table)  
+
 Rewrite of [text-table](https://www.npmjs.com/package/text-table) in TypeScript, making it faster and smaller.
 
 ## Install
