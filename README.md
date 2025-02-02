@@ -110,6 +110,20 @@ bar      45    lmno
     - `.` - Dotted
   - `opts.stringLength` `function` - Custom string length function. Default: `s => s.length`.
 
+## Benchmarks
+
+```
+ ✓ src/index.bench.ts > table 1256ms
+     name                     hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · fast-text-table  172,768.79  0.0046  0.3547  0.0058  0.0052  0.0150  0.0363  0.1003  ±0.70%    86385   fastest
+   · text-table        48,072.52  0.0177  0.3089  0.0208  0.0194  0.0544  0.1211  0.1959  ±0.74%    24037
+
+ ✓ src/index.bench.ts > table-large 1218ms
+     name                   hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · fast-text-table  9,786.78  0.0867  0.5694  0.1022  0.0948  0.2870  0.3159  0.4185  ±0.99%     4894   fastest
+   · text-table         246.99  3.7635  6.3990  4.0487  4.0865  5.2590  6.3990  6.3990  ±1.46%      124
+```
+
 ## License
 
 MIT

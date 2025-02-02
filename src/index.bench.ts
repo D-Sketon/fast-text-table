@@ -14,7 +14,7 @@ describe("table", () => {
     `${i}.${i}`,
   ]);
 
-  bench("table", () => {
+  bench("fast-text-table", () => {
     table(testText, { align: ["l", "r", "c", "."] });
   });
 
@@ -31,7 +31,7 @@ describe("table-large", () => {
     `${i}.${i}`,
   ]);
 
-  bench("table", () => {
+  bench("fast-text-table", () => {
     table(testText, { align: ["l", "r", "c", "."] });
   });
 
