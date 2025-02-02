@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "commonjs",
+    "target": "ES2018",
+    "sourceMap": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "lib": ["ESNext"]
+  },
+  "include": ["./src/index.ts"],
+  "exclude": ["node_modules"]
+}
