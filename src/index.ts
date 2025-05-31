@@ -9,37 +9,39 @@ const table = (
   {
     hsep = "  ",
     align = [],
-    stringLength = (s: string) => String(s).length,
+    stringLength = (s: string) => (s + "").length,
   }: TableOptions = {}
 ) => {
-  const dotSizes: number[] = rows.reduce((acc, row) => {
-    row.forEach((cell, index) => {
-      acc[index] = Math.max(acc[index] || 0, dotIndex(cell));
-    });
-    return acc;
-  }, [] as number[]);
+  const dotSizes: number[] = [];
 
-  const formattedRows = rows.map((row) =>
+  const cellData = rows.map((row) =>
     row.map((cell, index) => {
-      const c = String(cell);
-      if (align[index] === ".") {
-        const size =
-          dotSizes[index] +
-          (c.includes(".") ? 0 : 1) -
-          stringLength(c) +
-          dotIndex(c);
-        return c + " ".repeat(size);
-      }
-      return c;
+      const str = cell + "";
+      const dotIdx = str.lastIndexOf(".");
+      const dotSize = dotIdx > -1 ? dotIdx + 1 : str.length;
+      dotSizes[index] = Math.max(dotSizes[index] || 0, dotSize);
+      return { str, dotSize };
     })
   );
 
-  const sizes = formattedRows.reduce((acc, row) => {
-    row.forEach((cell, index) => {
-      acc[index] = Math.max(acc[index] || 0, stringLength(cell));
-    });
-    return acc;
-  }, [] as number[]);
+  const sizes: number[] = [];
+  const formattedRows = cellData.map((row) =>
+    row.map(({ str, dotSize }, index) => {
+      let formatted: string;
+      if (align[index] === ".") {
+        const size =
+          dotSizes[index] +
+          (str.includes(".") ? 0 : 1) -
+          stringLength(str) +
+          dotSize;
+        formatted = str + " ".repeat(size);
+      } else {
+        formatted = str;
+      }
+      sizes[index] = Math.max(sizes[index] || 0, stringLength(formatted));
+      return formatted;
+    })
+  );
 
   return formattedRows
     .map((row) =>
@@ -62,11 +64,6 @@ const table = (
         .trimEnd()
     )
     .join("\n");
-};
-
-const dotIndex = (s: string) => {
-  const index = s.lastIndexOf(".");
-  return index > -1 ? index + 1 : s.length;
 };
 
 export default table;

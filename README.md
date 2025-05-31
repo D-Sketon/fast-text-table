@@ -113,39 +113,39 @@ bar      45    lmno
 ## Benchmarks
 
 ```
-clk: ~4.20 GHz
+clk: ~4.03 GHz
 cpu: 13th Gen Intel(R) Core(TM) i5-13400F
-runtime: node 20.13.1 (x64-win32)
+runtime: node 24.1.0 (x64-win32)
 
 benchmark                   avg (min … max) p75 / p99    (min … top 1%)
 ------------------------------------------- -------------------------------
 • table - small dataset
 ------------------------------------------- -------------------------------
-table                          5.54 µs/iter   5.58 µs   █
-                        (5.32 µs … 6.27 µs)   5.96 µs   █ ▃  ▃
-                    (324.99  b … 808.72  b) 416.06  b █▄█▄█▄▄█▄▄▁▄▄▄▁▁▁▁▁▄▄
+table                          4.83 µs/iter   4.94 µs           █ ▃        
+                        (4.52 µs … 5.25 µs)   5.19 µs   ▇  ▇   ▇█ █▇
+                    (  1.28 kb …   1.36 kb)   1.30 kb ▆▆█▆▆█▆▁▁██▁██▆▆▁▆▁▁▆
 
-text-table                    18.29 µs/iter  18.11 µs    █ █ █
-                      (17.62 µs … 21.29 µs)  18.92 µs ▅ ▅█▅█ █  ▅         ▅
-                    (  3.49 kb …   3.78 kb)   3.64 kb █▁████▁█▁▁█▁▁▁▁▁▁▁▁▁█
+text-table                    19.93 µs/iter  19.80 µs      █  █
+                      (19.15 µs … 22.90 µs)  20.61 µs ▅ ▅▅ █▅ █▅▅         ▅
+                    (  3.07 kb …   3.16 kb)   3.11 kb █▁██▁██▁███▁▁▁▁▁▁▁▁▁█
 
 summary
   table
-   3.3x faster than text-table
+   4.12x faster than text-table
 
 • table - large dataset
 ------------------------------------------- -------------------------------
-table                         91.17 µs/iter  87.90 µs ▇█
-                     (78.60 µs … 489.80 µs) 245.60 µs ██
-                    ( 46.41 kb … 575.92 kb) 315.63 kb ██▅▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+table                         81.14 µs/iter  78.60 µs  █
+                       (67.80 µs … 1.44 ms) 204.10 µs  █▂
+                    ( 65.80 kb … 505.29 kb) 319.85 kb ███▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
-text-table                     3.63 ms/iter   3.80 ms  █▃
-                        (3.40 ms … 4.49 ms)   4.29 ms ▂██
-                    (157.80 kb …   1.70 mb)   1.36 mb ███▇▄▆▃▆▃▃█▆▃▃▃▂▃▃▁▁▂
+text-table                     4.12 ms/iter   4.20 ms    █
+                        (3.64 ms … 7.11 ms)   6.18 ms    █▃
+                    (  1.36 mb …   1.41 mb)   1.37 mb ▅▆▇███▃▃▂▁▁▁▁▁▁▁▁▁▁▁▁
 
 summary
   table
-   39.81x faster than text-table
+   50.83x faster than text-table
 ```
 
 ## License
