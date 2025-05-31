@@ -113,15 +113,39 @@ bar      45    lmno
 ## Benchmarks
 
 ```
- ✓ src/index.bench.ts > table 1256ms
-     name                     hz     min     max    mean     p75     p99    p995    p999     rme  samples
-   · fast-text-table  172,768.79  0.0046  0.3547  0.0058  0.0052  0.0150  0.0363  0.1003  ±0.70%    86385   fastest
-   · text-table        48,072.52  0.0177  0.3089  0.0208  0.0194  0.0544  0.1211  0.1959  ±0.74%    24037
+clk: ~4.20 GHz
+cpu: 13th Gen Intel(R) Core(TM) i5-13400F
+runtime: node 20.13.1 (x64-win32)
 
- ✓ src/index.bench.ts > table-large 1218ms
-     name                   hz     min     max    mean     p75     p99    p995    p999     rme  samples
-   · fast-text-table  9,786.78  0.0867  0.5694  0.1022  0.0948  0.2870  0.3159  0.4185  ±0.99%     4894   fastest
-   · text-table         246.99  3.7635  6.3990  4.0487  4.0865  5.2590  6.3990  6.3990  ±1.46%      124
+benchmark                   avg (min … max) p75 / p99    (min … top 1%)
+------------------------------------------- -------------------------------
+• table - small dataset
+------------------------------------------- -------------------------------
+table                          5.54 µs/iter   5.58 µs   █
+                        (5.32 µs … 6.27 µs)   5.96 µs   █ ▃  ▃
+                    (324.99  b … 808.72  b) 416.06  b █▄█▄█▄▄█▄▄▁▄▄▄▁▁▁▁▁▄▄
+
+text-table                    18.29 µs/iter  18.11 µs    █ █ █
+                      (17.62 µs … 21.29 µs)  18.92 µs ▅ ▅█▅█ █  ▅         ▅
+                    (  3.49 kb …   3.78 kb)   3.64 kb █▁████▁█▁▁█▁▁▁▁▁▁▁▁▁█
+
+summary
+  table
+   3.3x faster than text-table
+
+• table - large dataset
+------------------------------------------- -------------------------------
+table                         91.17 µs/iter  87.90 µs ▇█
+                     (78.60 µs … 489.80 µs) 245.60 µs ██
+                    ( 46.41 kb … 575.92 kb) 315.63 kb ██▅▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+text-table                     3.63 ms/iter   3.80 ms  █▃
+                        (3.40 ms … 4.49 ms)   4.29 ms ▂██
+                    (157.80 kb …   1.70 mb)   1.36 mb ███▇▄▆▃▆▃▃█▆▃▃▃▂▃▃▁▁▂
+
+summary
+  table
+   39.81x faster than text-table
 ```
 
 ## License

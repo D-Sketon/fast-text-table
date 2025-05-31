@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "vitest",
-    "bench": "vitest bench",
+    "bench": "tsx src/index.bench.ts",
     "build": "rollup -c"
   },
   "sideEffects": false,
@@ -28,10 +28,20 @@
     "@types/cli-color": "^2.0.6",
     "@types/text-table": "^0.2.5",
     "cli-color": "^2.0.4",
-    "rollup": "^4.34.0",
+    "mitata": "^1.0.34",
+    "rollup": "^4.41.1",
     "text-table": "^0.2.0",
     "tslib": "^2.8.1",
-    "typescript": "^5.7.3",
-    "vitest": "^3.0.4"
-  }
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/D-Sketon/fast-text-table.git"
+  },
+  "bugs": {
+    "url": "https://github.com/D-Sketon/fast-text-table/issues"
+  },
+  "homepage": "https://github.com/D-Sketon/fast-text-table#readme"
 }
