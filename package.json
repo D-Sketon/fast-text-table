@@ -1,6 +1,6 @@
 {
   "name": "fast-text-table",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -13,9 +13,12 @@
     },
     "./*": "./*"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "vitest",
-    "bench": "tsx src/index.bench.ts",
+    "bench": "tsx --expose-gc --allow-natives-syntax src/index.bench.ts",
     "build": "rollup -c"
   },
   "sideEffects": false,

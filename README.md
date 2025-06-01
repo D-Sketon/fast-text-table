@@ -113,7 +113,7 @@ bar      45    lmno
 ## Benchmarks
 
 ```
-clk: ~4.03 GHz
+clk: ~4.18 GHz
 cpu: 13th Gen Intel(R) Core(TM) i5-13400F
 runtime: node 24.1.0 (x64-win32)
 
@@ -121,31 +121,45 @@ benchmark                   avg (min … max) p75 / p99    (min … top 1%)
 ------------------------------------------- -------------------------------
 • table - small dataset
 ------------------------------------------- -------------------------------
-table                          4.83 µs/iter   4.94 µs           █ ▃        
-                        (4.52 µs … 5.25 µs)   5.19 µs   ▇  ▇   ▇█ █▇
-                    (  1.28 kb …   1.36 kb)   1.30 kb ▆▆█▆▆█▆▁▁██▁██▆▆▁▆▁▁▆
+fast-text-table                4.99 µs/iter   4.87 µs  █▂
+                        (4.67 µs … 5.95 µs)   5.92 µs ▅██▇▂▂▁▁▁▁▁▁▁▁▁▁▃▃▄▃▂
+                  gc(  2.41 ms …   4.42 ms)  13.29 kb ( 13.25 kb… 13.37 kb)
 
-text-table                    19.93 µs/iter  19.80 µs      █  █
-                      (19.15 µs … 22.90 µs)  20.61 µs ▅ ▅▅ █▅ █▅▅         ▅
-                    (  3.07 kb …   3.16 kb)   3.11 kb █▁██▁██▁███▁▁▁▁▁▁▁▁▁█
+text-table                    20.23 µs/iter  20.24 µs        ██
+                      (19.48 µs … 21.52 µs)  21.01 µs █▁▁█▁█▁████▁▁▁█▁▁▁▁▁█
+                  gc(  2.47 ms …   4.59 ms)   3.13 kb (  3.08 kb…  3.17 kb)
 
 summary
-  table
-   4.12x faster than text-table
+  fast-text-table
+   4.05x faster than text-table
+
+• table - middle dataset
+------------------------------------------- -------------------------------
+fast-text-table              263.47 µs/iter 276.20 µs    ▇▆ █▂
+                    (194.60 µs … 465.30 µs) 436.00 µs ▂▂███▆██▃▄▃▂▂▃▂▁▁▁▁▁▁
+                  gc(  2.29 ms …   5.08 ms) 543.81 kb (210.00 kb…801.07 kb)
+
+text-table                     7.05 ms/iter   7.16 ms    █ ▄ ▆▃       ▄
+                        (6.82 ms … 7.39 ms)   7.33 ms ▄▆▇███▆██▇█▇▇▆▆▆█▂▅▅▂
+                  gc(  2.27 ms …   2.99 ms)   1.89 mb (  1.89 mb…  1.89 mb)
+
+summary
+  fast-text-table
+   26.76x faster than text-table
 
 • table - large dataset
 ------------------------------------------- -------------------------------
-table                         81.14 µs/iter  78.60 µs  █
-                       (67.80 µs … 1.44 ms) 204.10 µs  █▂
-                    ( 65.80 kb … 505.29 kb) 319.85 kb ███▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+fast-text-table               10.39 ms/iter  10.51 ms  ▂   ▅█ ▂▂
+                      (10.01 ms … 11.01 ms)  10.93 ms ▂█▇▃▄██▇██▆▆▃▂▇▁▆▂▃▃▃
+                  gc(  2.32 ms …   3.02 ms)  34.06 mb ( 34.03 mb… 34.14 mb)
 
-text-table                     4.12 ms/iter   4.20 ms    █
-                        (3.64 ms … 7.11 ms)   6.18 ms    █▃
-                    (  1.36 mb …   1.41 mb)   1.37 mb ▅▆▇███▃▃▂▁▁▁▁▁▁▁▁▁▁▁▁
+text-table                      5.43 s/iter    5.45 s     █
+                          (5.38 s … 5.53 s)    5.47 s █▁▁██▁█▁▁█▁█▁▁█▁▁█▁██
+                  gc(  2.64 ms …   3.78 ms)  75.76 mb ( 75.76 mb… 75.76 mb)
 
 summary
-  table
-   50.83x faster than text-table
+  fast-text-table
+   523.01x faster than text-table
 ```
 
 ## License
