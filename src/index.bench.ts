@@ -35,15 +35,15 @@ summary(() => {
   group("table - small dataset", () => {
     bench("fast-text-table", () => {
       table(testTextSmall, { align: ["l", "r", "c", "."] });
-    }).gc("inner");
+    }).gc("inner").compact();
 
     bench("text-table-fast", () => {
       textTableFast(testTextSmall, { align: ["left", "right", "center"] });
-    }).gc("inner");
+    }).gc("inner").compact();
 
     bench("text-table", () => {
       textTable(testTextSmall, { align: ["l", "r", "c", "."] });
-    }).gc("inner");
+    }).gc("inner").compact();
   });
 });
 
@@ -51,16 +51,16 @@ summary(() => {
   group("table - middle dataset", () => {
     bench("fast-text-table", () => {
       table(testTextMiddle, { align: ["l", "r", "c", "."] });
-    }).gc("inner");
+    }).gc("inner").compact();
 
     bench("text-table-fast", () => {
       textTableFast(testTextMiddle, { align: ["left", "right", "center"] });
-    }).gc("inner");
+    }).gc("inner").compact();
 
 
     bench("text-table", () => {
       textTable(testTextMiddle, { align: ["l", "r", "c", "."] });
-    }).gc("inner");
+    }).gc("inner").compact();
   });
 });
 
@@ -68,16 +68,16 @@ summary(() => {
   group("table - large dataset", () => {
     bench("fast-text-table", () => {
       table(testTextLarge, { align: ["l", "r", "c", "."] });
-    }).gc("inner");
+    }).gc("inner").compact();
 
     bench("text-table-fast", () => {
       textTableFast(testTextLarge, { align: ["left", "right", "center"] });
-    }).gc("inner");
+    }).gc("inner").compact();
 
 
     bench("text-table", () => {
       textTable(testTextLarge, { align: ["l", "r", "c", "."] });
-    }).gc("inner");
+    }).gc("inner").compact();
   });
 });
 
