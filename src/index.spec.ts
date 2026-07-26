@@ -93,6 +93,61 @@ describe("table", () => {
     );
   });
 
+  it("dot align with cell exceeding alignment target", () => {
+    const result = table(
+      [
+        ["123456.7890", "x"],
+        ["1.2345678901234", "y"],
+      ],
+      { align: [".", "l"] }
+    );
+    expect(result).toBe(
+      [
+        " 123456.7890     x",
+        "1.2345678901234  y",
+      ].join("\n")
+    );
+  });
+
+  it("ansi dot-align", () => {
+    const result = table(
+      [
+        [color.red("123.45")],
+        [color.green("6.789")],
+      ],
+      { align: ["."], stringLength: (s) => ansiTrim(s).length }
+    );
+    const visualLines = ansiTrim(result).split("\n");
+    const dotPos = visualLines[0].lastIndexOf(".");
+    expect(visualLines.every(l => l.lastIndexOf(".") === dotPos)).toBe(true);
+  });
+
+  it("ansi dot-align different prefix lengths", () => {
+    const result = table(
+      [
+        [color.red("123.45")],
+        [color.bold("6.789")],
+      ],
+      { align: ["."], stringLength: (s) => ansiTrim(s).length }
+    );
+    const visualLines = ansiTrim(result).split("\n");
+    const dotPos = visualLines[0].lastIndexOf(".");
+    expect(visualLines.every(l => l.lastIndexOf(".") === dotPos)).toBe(true);
+  });
+
+  it("ansi double-dot last dot align", () => {
+    const result = table(
+      [
+        [color.red("0.1.2")],
+        [color.bold("11.22.33")],
+      ],
+      { align: ["."], stringLength: (s) => ansiTrim(s).length }
+    );
+    const visualLines = ansiTrim(result).split("\n");
+    const dotPos = visualLines[0].lastIndexOf(".");
+    expect(visualLines.every(l => l.lastIndexOf(".") === dotPos)).toBe(true);
+  });
+
   it("ansi-colors", () => {
     const options = {
       align: ["l", "c", "l"],

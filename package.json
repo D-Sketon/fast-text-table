@@ -1,6 +1,6 @@
 {
   "name": "fast-text-table",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -26,19 +26,19 @@
   "license": "MIT",
   "description": "Quickly generate borderless text tables with alignment",
   "devDependencies": {
-    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.3.0",
     "@types/cli-color": "^2.0.6",
     "@types/text-table": "^0.2.5",
     "cli-color": "^2.0.4",
     "mitata": "^1.0.34",
-    "rollup": "^4.53.3",
+    "rollup": "^4.62.2",
     "text-table": "^0.2.0",
     "text-table-fast": "^0.1.0",
     "tslib": "^2.8.1",
-    "tsx": "^4.20.6",
+    "tsx": "^4.23.1",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.14"
+    "vitest": "^4.1.10"
   },
   "repository": {
     "type": "git",
@@ -47,5 +47,15 @@
   "bugs": {
     "url": "https://github.com/D-Sketon/fast-text-table/issues"
   },
-  "homepage": "https://github.com/D-Sketon/fast-text-table#readme"
+  "homepage": "https://github.com/D-Sketon/fast-text-table#readme",
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
+  },
+  "keywords": [
+    "table",
+    "text-table",
+    "cli",
+    "format"
+  ]
 }

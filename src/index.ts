@@ -1,4 +1,4 @@
-interface TableOptions {
+export interface TableOptions {
   hsep?: string | undefined;
   align?: ("l" | "r" | "c" | "." | null | undefined)[] | string[] | undefined;
   stringLength?: (s: string) => number;
@@ -9,59 +9,69 @@ const table = (
   {
     hsep = "  ",
     align = [],
-    stringLength = (s: string) => (s + "").length,
-  }: TableOptions = {}
+    stringLength = (s: string) => s.length,
+  }: TableOptions = {},
 ) => {
-  const dotSizes: number[] = [];
+  const dotSizes: number[] = [],
+    colWidths: number[] = [],
+    max = Math.max,
+    repeatSpace = (n: number) => " ".repeat(n);
 
-  const cellData = rows.map((row) =>
-    row.map((cell, index) => {
-      const str = cell + "";
-      const dotIdx = str.lastIndexOf(".");
-      const dotSize = dotIdx > -1 ? dotIdx + 1 : str.length;
-      dotSizes[index] = Math.max(dotSizes[index] || 0, dotSize);
-      return { str, dotSize };
-    })
-  );
-
-  const sizes: number[] = [];
-  const formattedRows = cellData.map((row) =>
-    row.map(({ str, dotSize }, index) => {
-      let formatted: string;
-      if (align[index] === ".") {
-        const size =
-          dotSizes[index] +
-          (str.includes(".") ? 0 : 1) -
-          stringLength(str) +
-          dotSize;
-        formatted = str + " ".repeat(size);
-      } else {
-        formatted = str;
-      }
-      sizes[index] = Math.max(sizes[index] || 0, stringLength(formatted));
-      return formatted;
-    })
-  );
-
-  return formattedRows
+  return rows
+    .map((row) =>
+      row.map((cell, col) => {
+        const str = cell + "";
+        if (align[col] !== ".") {
+          colWidths[col] = max(colWidths[col] || 0, stringLength(str));
+        } else {
+          const dot = str.lastIndexOf(".");
+          const end =
+            dot > -1 ? stringLength(str.slice(0, dot)) + 1 : stringLength(str);
+          dotSizes[col] = max(dotSizes[col] || 0, end);
+          colWidths[col] = max(
+            colWidths[col] || 0,
+            dotSizes[col] + (dot > -1 ? 0 : 1) + end,
+            stringLength(str),
+          );
+        }
+        return str;
+      }),
+    )
     .map((row) =>
       row
-        .map((cell, index) => {
-          const pad = sizes[index] - stringLength(cell);
-          if (align[index] === "r" || align[index] === ".") {
-            return " ".repeat(pad) + cell;
-          }
-          if (align[index] === "c") {
+        .map((str, col) => {
+          const len = stringLength(str);
+          const width = colWidths[col];
+          const a = align[col];
+          const pad = width - len;
+          let dot, effectiveLen;
+
+          if (a === ".") {
+            dot = str.lastIndexOf(".");
+            effectiveLen = max(
+              dotSizes[col] +
+                (dot > -1
+                  ? stringLength(str.slice(0, dot)) + 1
+                  : stringLength(str) + 1),
+              len,
+            );
             return (
-              " ".repeat(Math.ceil(pad / 2)) +
-              cell +
-              " ".repeat(Math.floor(pad / 2))
+              repeatSpace(width - effectiveLen) +
+              str +
+              repeatSpace(effectiveLen - len)
             );
           }
-          return cell + " ".repeat(pad);
+          if (a === "r") {
+            return repeatSpace(pad) + str;
+          }
+          if (a === "c") {
+            dot = Math.ceil(pad / 2);
+            return repeatSpace(dot) + str + repeatSpace(pad - dot);
+          }
+          return str + repeatSpace(pad);
         })
         .join(hsep)
-        .trimEnd()
+        .trimEnd(),
     )
     .join("\n");
 };
